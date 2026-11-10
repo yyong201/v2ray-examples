@@ -1,0 +1,66 @@
+{
+    "log": {
+        "error": {
+            "level": "Debug",
+            "type": "Console"
+        },
+        "access": {
+            "type": "None"
+        }
+    },
+    "inbounds": [
+        {
+            "protocol": "vmess",
+            "tag": "portal-vmess-in",
+            "settings": {
+                "users": [
+                    "ce4013d7-b36c-9bdb-c66f-8c5599b27ef7"
+                ]
+            },
+            "listen": "127.0.0.1",
+            "port": 10086
+        },
+        {
+            "protocol": "dokodemo-door",
+            "tag": "external",
+            "settings": {
+                "address": "127.0.0.1",
+                "port": 9001,
+                "networks": [
+                    "tcp"
+                ]
+            },
+            "listen": "127.0.0.1",
+            "port": 9001
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "blackhole",
+            "settings": {}
+        }
+    ],
+    "services": {
+        "reverse": {
+            "portal_config": [
+                {
+                    "tag": "portal",
+                    "domain": "portal.example.local"
+                }
+            ],
+            "bridge_config": []
+        }
+    },
+    "router": {
+        "domainStrategy": "AsIs",
+        "rule": [
+            {
+                "tag": "portal",
+                "inboundTag": [
+                    "portal-vmess-in",
+                    "external"
+                ]
+            }
+        ]
+    }
+}

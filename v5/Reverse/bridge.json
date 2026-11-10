@@ -1,0 +1,69 @@
+{
+    "log": {
+        "error": {
+            "level": "Debug",
+            "type": "Console"
+        },
+        "access": {
+            "type": "None"
+        }
+    },
+    "inbounds": [],
+    "outbounds": [
+        {
+            "protocol": "vmess",
+            "tag": "to-portal",
+            "settings": {
+                "address": "127.0.0.1",
+                "port": 10086,
+                "uuid": "ce4013d7-b36c-9bdb-c66f-8c5599b27ef7"
+            }
+        },
+        {
+            "protocol": "freedom",
+            "tag": "to-localssh",
+            "settings": {
+                "destination_override": {
+                    "server": {
+                        "address": "127.0.0.1",
+                        "port": 22
+                    }
+                }
+            }
+        }
+    ],
+    "services": {
+        "reverse": {
+            "bridge_config": [
+                {
+                    "tag": "bridge",
+                    "domain": "portal.example.local"
+                }
+            ],
+            "portal_config": []
+        }
+    },
+    "router": {
+        "domainStrategy": "AsIs",
+        "rule": [
+            {
+                "tag": "to-portal",
+                "inboundTag": [
+                    "bridge"
+                ],
+                "domain": [
+                    {
+                        "type": "RootDomain",
+                        "value": "portal.example.local"
+                    }
+                ]
+            },
+            {
+                "tag": "to-localssh",
+                "inboundTag": [
+                    "bridge"
+                ]
+            }
+        ]
+    }
+}

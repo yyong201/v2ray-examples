@@ -4,7 +4,7 @@
     },
     "inbounds": [
         {
-            "port": 10800,
+            "port": 1080,
             "listen": "127.0.0.1",
             "protocol": "socks",
             "settings": {
@@ -14,27 +14,24 @@
     ],
     "outbounds": [
         {
-            "protocol": "vless",
+            "protocol": "vmess",
             "settings": {
                 "vnext": [
                     {
-                        "address": "example.com", // 换成你的域名或服务器 IP（发起请求时无需解析域名了）
-                        "port": 443,
+                        "address": "{{ host }}",
+                        "port": "{{ port }}",
                         "users": [
                             {
-                                "id": "", // 填写你的 UUID
-                                "encryption": "none",
-                                "level": 0
+                                "id": "{{ uuid }}"
                             }
                         ]
                     }
                 ]
             },
             "streamSettings": {
-                "network": "tcp",
-                "security": "tls",
-                "tlsSettings": {
-                    "serverName": "example.com" // 换成你的域名
+                "network": "kcp",
+                "kcpSettings": {
+                    "seed": "{{ seed }}"
                 }
             }
         }

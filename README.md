@@ -1,5 +1,7 @@
 # v2ray-examples
 
+![ENGLISH Here are some V2Ray configuration examples for reference](README.ENG.md)
+
 这里是一些供参考的 V2Ray 配置示例，内容与时俱进，自动化脚本等请勿从这里拉取配置。
 
 感谢 vTemplate 的作者 KiriKira、雨落无声和 Project V 的所有开发人员。
@@ -72,8 +74,6 @@
                     {
                         "users": [
                             {
-                                "alterId": 4,
-                                "security": "aes-128-gcm",
                                 "id": ""
                             }
                         ],
@@ -119,7 +119,6 @@
                 "clients": [
                     {
                         "id": "",
-                        "alterId": 4
                     }
                 ]
             }
